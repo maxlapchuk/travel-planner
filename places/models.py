@@ -11,6 +11,7 @@ class ProjectPlace(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     project_id = Column(Integer, ForeignKey("travel_projects.id"), nullable=False)
+    external_id = Column(Integer, nullable=False)
     title = Column(String(512), nullable=True)
     artist = Column(String(512), nullable=True)
     image_url = Column(String(1024), nullable=True)
