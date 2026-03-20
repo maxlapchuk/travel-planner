@@ -1,6 +1,7 @@
 from datetime import date, datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field, field_validator
+from places.schemas import PlaceImport, ProjectPlaceOut
 
 
 class ProjectCreate(BaseModel):
@@ -20,7 +21,6 @@ class ProjectCreate(BaseModel):
                 raise ValueError("If provided, at least 1 place must be included.")
             if len(v) > 10:
                 raise ValueError("A project cannot have more than 10 places.")
-            # check for duplicate external IDs in the same request
             ids = [p.external_id for p in v]
             if len(ids) != len(set(ids)):
                 raise ValueError("Duplicate external_id values in places list.")
